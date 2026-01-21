@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoconuTAi - Intelligent Mood-Aware Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>CoconuTAi</h1>
+                    <p class="tagline">Intelligent Mood-Aware Companion</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" id="statsBtn">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistics</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Mood Detection Panel -->
+            <div class="mood-panel" id="moodPanel">
+                <div class="mood-detection-card">
+                    <div class="card-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h2>Mood Detection</h2>
+                    <p class="mood-description">Let me understand your emotions to provide personalized responses</p>
+                    
+                    <div class="video-container" id="videoContainer" style="display: none;">
+                        <video id="video" autoplay playsinline></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                    </div>
+                    
+                    <div class="mood-result" id="moodResult" style="display: none;">
+                        <div class="mood-icon" id="moodIcon"></div>
+                        <h3 id="moodText">Detecting...</h3>
+                        <p id="moodMessage"></p>
+                    </div>
+                    
+                    <button class="btn-primary" id="startMoodBtn">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Start Mood Detection</span>
+                    </button>
+                    
+                    <button class="btn-primary" id="captureMoodBtn" style="display: none;">
+                        <i class="fas fa-camera-retro"></i>
+                        <span>Capture & Analyze</span>
+                    </button>
+                    
+                    <button class="btn-secondary" id="skipMoodBtn">
+                        <i class="fas fa-forward"></i>
+                        <span>Skip & Start Chatting</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-interface" id="chatInterface" style="display: none;">
+                <div class="chat-container">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <div class="mood-indicator" id="currentMood">
+                            <i class="fas fa-smile"></i>
+                            <span id="moodLabel">Neutral</span>
+                        </div>
+                        <div class="ai-status">
+                            <span class="status-dot"></span>
+                            <span>AI Learning Active</span>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-bubble">
+                                    <p>Hello! I'm CoconuTAi, your intelligent mood-aware companion. I learn from our conversations to better understand and assist you. How can I help you today?</p>
+                                </div>
+                                <span class="message-time"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input-container">
+                        <div class="input-wrapper">
+                            <input type="text" id="messageInput" placeholder="Type your message here..." autocomplete="off">
+                            <button class="btn-send" id="sendBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="input-hints">
+                            <span class="hint">Try: "What is 5+5?" or "Tell me about yourself"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Panel -->
+                <div class="side-panel">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>AI Features</h3>
+                        </div>
+                        <ul class="feature-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Mood-based responses</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Mathematical calculations</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Contextual memory</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Personalized conversations</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Continuous learning</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Quick Tips</h3>
+                        </div>
+                        <div class="tips-content">
+                            <p>Introduce yourself to get personalized responses</p>
+                            <p>Share your feelings and daily experiences</p>
+                            <p>Ask mathematical questions for instant calculations</p>
+                            <p>The more you chat, the smarter I become!</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-reset" id="resetBtn">
+                        <i class="fas fa-redo"></i>
+                        <span>New Session</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div class="modal" id="statsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-chart-line"></i>
+                    Learning Statistics
+                </h2>
+                <button class="modal-close" id="closeStatsBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="statsContent">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalConversations">0</h3>
+                        <p>Total Conversations</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="topicsLearned">0</h3>
+                        <p>Topics Learned</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="userName">Guest</h3>
+                        <p>User Name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
