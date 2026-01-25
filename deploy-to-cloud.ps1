@@ -5,7 +5,8 @@
 $PROJECT_ID = "coconut-ai-project"
 $SERVICE_NAME = "coconut-ai"
 $REGION = "us-central1"
-$GEMINI_API_KEY = "your_gemini_api_key_here"  # Replace with your actual key
+$OLLAMA_HOST = "http://localhost:11434"  # Replace with a reachable Ollama endpoint
+$OLLAMA_MODEL = "llama3:8b"
 
 Write-Host "🚀 Starting CocoNUT AI Deployment to Google Cloud Run" -ForegroundColor Cyan
 Write-Host "=" * 60
@@ -37,7 +38,7 @@ gcloud run deploy $SERVICE_NAME `
     --allow-unauthenticated `
     --memory 2Gi `
     --timeout 300 `
-    --set-env-vars GEMINI_API_KEY=$GEMINI_API_KEY
+    --set-env-vars OLLAMA_HOST=$OLLAMA_HOST,OLLAMA_MODEL=$OLLAMA_MODEL
 
 # Step 6: Get URL
 Write-Host "`n📝 Step 6: Getting service URL..." -ForegroundColor Yellow

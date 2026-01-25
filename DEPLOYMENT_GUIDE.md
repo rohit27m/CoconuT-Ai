@@ -1,5 +1,7 @@
 # 🚀 Deploy CocoNUT AI to Google Cloud
 
+> Note: The AI layer now runs locally via Ollama. The steps below reference the previous Gemini-based deployment and are kept for reference. To deploy with Ollama you will need a reachable Ollama host or alternate model endpoint accessible from Cloud Run/App Engine.
+
 This guide will help you deploy your CocoNUT AI chatbot to Google Cloud Platform.
 
 ## 🎯 Deployment Options

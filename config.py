@@ -1,3 +1,5 @@
+import os
+
 # =========================
 # Database Configuration
 # =========================
@@ -29,7 +31,8 @@ RETRY_CONFIG = {
 }
 
 # =========================
-# API Configuration
+# AI Configuration
 # =========================
-# Google Gemini API Key for AI capabilities
-GEMINI_API_KEY = 'AIzaSyDuG2YCf-a5TVmITYm4giCxN7sZNnhnGQc'
+# Ollama host/model configuration (local by default)
+OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
+OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'llama3:8b')

@@ -2,6 +2,8 @@
 
 This project includes everything you need to deploy to Google Cloud!
 
+> Note: The AI now runs via a local Ollama model. The Gemini steps below are legacy and kept for reference; to deploy with Ollama you would need a reachable Ollama host or alternate model endpoint.
+
 ## 📁 Deployment Files Created:
 
 1. **[Dockerfile](Dockerfile)** - Container configuration for Cloud Run
@@ -18,8 +20,8 @@ This project includes everything you need to deploy to Google Cloud!
 ### Step 1: Install Google Cloud SDK
 Download from: https://cloud.google.com/sdk/docs/install
 
-### Step 2: Get Gemini API Key (Free)
-Get from: https://makersuite.google.com/app/apikey
+### Step 2: (Legacy) Gemini API Key
+Only needed if you switch back to the Gemini backend. Ollama deployments require a reachable Ollama host instead.
 
 ### Step 3: Run Deployment Script
 

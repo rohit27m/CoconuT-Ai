@@ -3,7 +3,8 @@ runtime: python311
 entrypoint: gunicorn -b :$PORT app:app
 
 env_variables:
-  GEMINI_API_KEY: "AIzaSyDuG2YCf-a5TVmITYm4giCxN7sZNnhnGQc"
+  OLLAMA_HOST: "http://localhost:11434"
+  OLLAMA_MODEL: "llama3:8b"
 
 automatic_scaling:
   target_cpu_utilization: 0.65

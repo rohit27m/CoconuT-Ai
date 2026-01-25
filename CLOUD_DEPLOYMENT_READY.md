@@ -1,5 +1,7 @@
 # 🎉 Your Project is Ready for Google Cloud!
 
+> Note: The AI layer now runs locally via Ollama (no Gemini API key). The deployment steps below reference the previous Gemini setup and are retained for reference. To deploy with Ollama you would need a reachable Ollama host or an alternative cloud model endpoint.
+
 ## ✅ What's Been Prepared:
 
 ### 📦 Deployment Files Created:
