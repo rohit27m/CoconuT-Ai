@@ -81,12 +81,12 @@
 ### Emotion Analysis & AI Chat
 *This GIF demonstrates the initial emotion analysis, followed by a seamless transition to the conversational interface where the AI is actively responding.*
 
-![Emotion Analysis and Chat GIF](https://i.imgur.com/S2p6t2i.gif)
+![Emotion Analysis and Chat GIF](https://i.imgur.com/M8dJ4aV.gif)
 
 ### Audio Atmosphere Controls
 *This GIF showcases the user interacting with the ambient sound and music player controls.*
 
-![Audio Controls GIF](https://i.imgur.com/3QZ3o8p.gif)
+![Audio Controls GIF](https://i.imgur.com/O3bNcgt.gif)
 
 ---
 
