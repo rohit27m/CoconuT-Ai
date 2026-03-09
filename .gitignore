@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pkl
+*.pickle
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Application specific
+ai_knowledge.pkl
+user_preferences.json
+*.log
+
+# CSS Backups
+static/css/*.backup
+static/css/*.old
+static/css/*-backup
+static/css/style-new.css
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Build/Deploy
+dist/
+build/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentation build
+docs/_build/

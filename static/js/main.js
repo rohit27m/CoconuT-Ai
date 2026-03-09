@@ -4,9 +4,44 @@ let canvas = null;
 let currentMood = 'neutral';
 let stream = null;
 
+// Ambient Sound System
+let ambientAudio = null;
+let musicAudio = null;
+let isAmbientPlaying = false;
+let isMusicPlaying = false;
+let ambientVolume = 0.3;
+let musicVolume = 0.5;
+
+// Mood-based ambient sounds (using free ambient sound URLs)
+const ambientSounds = {
+    'happy': 'https://cdn.pixabay.com/audio/2022/03/10/audio_4f8f803d1a.mp3', // Upbeat ambient
+    'sad': 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3', // Calm rain
+    'angry': 'https://cdn.pixabay.com/audio/2022/03/15/audio_c9aee0f2e7.mp3', // Tension relief
+    'neutral': 'https://cdn.pixabay.com/audio/2022/03/10/audio_c8ec5738e1.mp3', // Peaceful ambient
+    'surprise': 'https://cdn.pixabay.com/audio/2022/11/22/audio_6e5d0d6023.mp3', // Wonder sounds
+    'fear': 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3', // Calming sounds
+    'disgust': 'https://cdn.pixabay.com/audio/2022/03/10/audio_c8ec5738e1.mp3' // Neutral ambient
+};
+
+// Sample song data (BIBA or others can be added)
+const songLibrary = {
+    'biba': {
+        title: 'BIBA',
+        artists: 'Marshmello, Pritam Chakraborty, Shirley Setia, Pardeep Singh Sran, Dev Negi',
+        album: 'BIBA',
+        url: 'http://h.saavncdn.com/987/cd902d048c13e5ce6ca84cc409746a5d.mp3',
+        image: 'https://c.saavncdn.com/987/BIBA-English-2019-20190201201359-500x500.jpg',
+        duration: 175,
+        year: 2019
+    }
+};
+
+let currentSong = null;
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
+    initializeAudioSystem();
 });
 
 function initializeApp() {
@@ -161,15 +196,20 @@ function showChatInterface() {
     // Update mood indicator
     updateMoodIndicator(currentMood);
     
+    // Start ambient sound based on mood
+    setTimeout(() => {
+        playAmbientSound(currentMood);
+    }, 1000);
+    
     // Add initial greeting based on mood
     const greetings = {
-        'happy': "I can see you're in a great mood! How can I make your day even better?",
-        'sad': "I'm here for you. Would you like to talk about what's bothering you?",
-        'angry': "I understand you might be frustrated. Let's work through this together.",
-        'neutral': "How can I assist you today?",
-        'surprise': "Something unexpected? I'm all ears!",
-        'fear': "It's okay to feel worried. I'm here to help.",
-        'disgust': "I'm listening. Tell me what's on your mind."
+        'happy': "Your emotional profile indicates positivity. I'm optimized to help enhance your productive state. How may I assist you?",
+        'sad': "I've detected a subdued emotional state. I'm here to provide support and assistance. What can I help you with today?",
+        'angry': "Your current emotional profile suggests elevated stress. Let's work together to address your concerns systematically.",
+        'neutral': "System initialized. How can the AI platform assist you today?",
+        'surprise': "I've detected heightened curiosity in your emotional profile. I'm ready to address your inquiries.",
+        'fear': "Your emotional state indicates concern. I'm here to provide reliable support and information.",
+        'disgust': "I'm here to assist you. Please share what's on your mind today."
     };
     
     if (currentMood !== 'neutral') {
@@ -289,7 +329,7 @@ function createMessageElement(message, type) {
     return messageDiv;
 }
 
-// Show typing indicator
+// Show typing indicator with premium animation
 function showTypingIndicator() {
     const chatMessages = document.getElementById('chatMessages');
     const typingDiv = document.createElement('div');
@@ -301,7 +341,14 @@ function showTypingIndicator() {
         </div>
         <div class="message-content">
             <div class="message-bubble">
-                <p>Thinking...</p>
+                <p>
+                    <span>AI is analyzing your message</span>
+                    <span class="thinking-dots">
+                        <span class="thinking-dot"></span>
+                        <span class="thinking-dot"></span>
+                        <span class="thinking-dot"></span>
+                    </span>
+                </p>
             </div>
         </div>
     `;
@@ -409,3 +456,248 @@ window.addEventListener('click', (e) => {
         closeStats();
     }
 });
+
+// =========================
+// AMBIENT SOUND SYSTEM
+// =========================
+
+function initializeAudioSystem() {
+    // Create audio elements
+    ambientAudio = new Audio();
+    ambientAudio.loop = true;
+    ambientAudio.volume = ambientVolume;
+    
+    musicAudio = new Audio();
+    musicAudio.loop = false;
+    musicAudio.volume = musicVolume;
+    
+    // Set up event listeners for audio controls
+    setupAudioControls();
+    
+    console.log('Audio system initialized');
+}
+
+function setupAudioControls() {
+    const ambientToggle = document.getElementById('ambientToggle');
+    const musicToggle = document.getElementById('musicToggle');
+    const ambientVolumeSlider = document.getElementById('ambientVolume');
+    const musicVolumeSlider = document.getElementById('musicVolume');
+    
+    if (ambientToggle) {
+        ambientToggle.addEventListener('click', toggleAmbientSound);
+    }
+    
+    if (musicToggle) {
+        musicToggle.addEventListener('click', toggleMusic);
+    }
+    
+    if (ambientVolumeSlider) {
+        ambientVolumeSlider.addEventListener('input', (e) => {
+            ambientVolume = e.target.value / 100;
+            if (ambientAudio) {
+                ambientAudio.volume = ambientVolume;
+            }
+        });
+    }
+    
+    if (musicVolumeSlider) {
+        musicVolumeSlider.addEventListener('input', (e) => {
+            musicVolume = e.target.value / 100;
+            if (musicAudio) {
+                musicAudio.volume = musicVolume;
+            }
+        });
+    }
+    
+    // Music ended event
+    if (musicAudio) {
+        musicAudio.addEventListener('ended', () => {
+            isMusicPlaying = false;
+            updateMusicControls();
+        });
+    }
+}
+
+function toggleAmbientSound() {
+    if (isAmbientPlaying) {
+        stopAmbientSound();
+    } else {
+        playAmbientSound(currentMood);
+    }
+}
+
+function playAmbientSound(mood) {
+    if (!ambientAudio) return;
+    
+    const soundUrl = ambientSounds[mood] || ambientSounds['neutral'];
+    
+    // Only change sound if it's different
+    if (ambientAudio.src !== soundUrl) {
+        ambientAudio.src = soundUrl;
+    }
+    
+    ambientAudio.play()
+        .then(() => {
+            isAmbientPlaying = true;
+            updateAmbientControls();
+            console.log(`Playing ${mood} ambient sound`);
+        })
+        .catch(error => {
+            console.error('Error playing ambient sound:', error);
+            showNotification('Unable to play ambient sound. Click to enable audio.', 'warning');
+        });
+}
+
+function stopAmbientSound() {
+    if (ambientAudio) {
+        ambientAudio.pause();
+        isAmbientPlaying = false;
+        updateAmbientControls();
+    }
+}
+
+function changeAmbientSound(mood) {
+    if (isAmbientPlaying) {
+        // Fade out current, change, fade in new
+        fadeOut(ambientAudio, () => {
+            playAmbientSound(mood);
+        });
+    }
+}
+
+function toggleMusic() {
+    if (isMusicPlaying) {
+        stopMusic();
+    } else {
+        // Play default song (BIBA)
+        playMusic('biba');
+    }
+}
+
+function playMusic(songId) {
+    const song = songLibrary[songId];
+    if (!song || !musicAudio) return;
+    
+    currentSong = song;
+    musicAudio.src = song.url;
+    
+    musicAudio.play()
+        .then(() => {
+            isMusicPlaying = true;
+            updateMusicControls();
+            updateNowPlaying(song);
+            console.log(`Playing: ${song.title} by ${song.artists}`);
+            
+            // Show notification
+            showMusicNotification(song);
+        })
+        .catch(error => {
+            console.error('Error playing music:', error);
+            showNotification('Unable to play music. Click to enable audio.', 'warning');
+        });
+}
+
+function stopMusic() {
+    if (musicAudio) {
+        musicAudio.pause();
+        musicAudio.currentTime = 0;
+        isMusicPlaying = false;
+        currentSong = null;
+        updateMusicControls();
+        updateNowPlaying(null);
+    }
+}
+
+function updateAmbientControls() {
+    const ambientToggle = document.getElementById('ambientToggle');
+    const ambientIcon = document.getElementById('ambientIcon');
+    
+    if (ambientToggle) {
+        if (isAmbientPlaying) {
+            ambientToggle.classList.add('active');
+            if (ambientIcon) ambientIcon.className = 'fas fa-volume-up';
+        } else {
+            ambientToggle.classList.remove('active');
+            if (ambientIcon) ambientIcon.className = 'fas fa-volume-mute';
+        }
+    }
+}
+
+function updateMusicControls() {
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = document.getElementById('musicIcon');
+    
+    if (musicToggle) {
+        if (isMusicPlaying) {
+            musicToggle.classList.add('active');
+            if (musicIcon) musicIcon.className = 'fas fa-pause';
+        } else {
+            musicToggle.classList.remove('active');
+            if (musicIcon) musicIcon.className = 'fas fa-play';
+        }
+    }
+}
+
+function updateNowPlaying(song) {
+    const nowPlayingDiv = document.getElementById('nowPlaying');
+    
+    if (!nowPlayingDiv) return;
+    
+    if (song) {
+        nowPlayingDiv.innerHTML = `
+            <div class="song-info">
+                <img src="${song.image}" alt="${song.title}" class="song-cover">
+                <div class="song-details">
+                    <div class="song-title">${song.title}</div>
+                    <div class="song-artist">${song.artists}</div>
+                </div>
+            </div>
+        `;
+        nowPlayingDiv.style.display = 'flex';
+    } else {
+        nowPlayingDiv.style.display = 'none';
+    }
+}
+
+function showMusicNotification(song) {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const notification = document.createElement('div');
+    notification.className = 'music-notification';
+    notification.innerHTML = `
+        <i class="fas fa-music"></i>
+        <span>Now playing: <strong>${song.title}</strong> by ${song.artists}</span>
+    `;
+    
+    chatMessages.appendChild(notification);
+    scrollToBottom();
+    
+    // Remove notification after 5 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+// Fade out audio
+function fadeOut(audio, callback) {
+    const fadeInterval = setInterval(() => {
+        if (audio.volume > 0.1) {
+            audio.volume -= 0.1;
+        } else {
+            clearInterval(fadeInterval);
+            audio.pause();
+            audio.volume = ambientVolume; // Reset volume
+            if (callback) callback();
+        }
+    }, 100);
+}
+
+// Update mood indicator and change ambient sound
+function updateMoodWithAmbient(mood) {
+    updateMoodIndicator(mood);
+    if (isAmbientPlaying) {
+        changeAmbientSound(mood);
+    }
+}
+
