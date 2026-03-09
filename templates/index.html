@@ -28,8 +28,8 @@
                 <div class="logo-text">
                     <h1>CoconuTAi</h1>
                     <p class="tagline">
-                        <i class="fas fa-sparkles"></i>
-                        Intelligent Mood-Aware Companion
+                        <i class="fas fa-shield-alt"></i>
+                        Enterprise AI Platform
                     </p>
                 </div>
             </div>
@@ -55,8 +55,8 @@
                         </div>
                         <div class="icon-glow"></div>
                     </div>
-                    <h2 class="gradient-text">Mood Detection</h2>
-                    <p class="mood-description">Experience personalized AI interactions tailored to your emotional state</p>
+                    <h2 class="gradient-text">Emotion AI Analysis</h2>
+                    <p class="mood-description">Experience enterprise-grade emotional intelligence with real-time facial analysis and personalized AI interactions</p>
                     
                     <div class="video-container glass-inner" id="videoContainer" style="display: none;">
                         <video id="video" autoplay playsinline></video>
@@ -79,19 +79,17 @@
                     
                     <button class="btn-primary" id="startMoodBtn">
                         <i class="fas fa-play-circle"></i>
-                        <span>Start Detection</span>
-                        <div class="btn-shine"></div>
+                        <span>Initialize Emotion AI</span>
                     </button>
                     
                     <button class="btn-primary" id="captureMoodBtn" style="display: none;">
                         <i class="fas fa-camera-retro"></i>
-                        <span>Capture & Analyze</span>
-                        <div class="btn-shine"></div>
+                        <span>Analyze Emotion</span>
                     </button>
                     
                     <button class="btn-ghost" id="skipMoodBtn">
                         <i class="fas fa-arrow-right"></i>
-                        <span>Skip & Continue</span>
+                        <span>Skip Analysis</span>
                     </button>
                 </div>
             </div>
@@ -101,14 +99,14 @@
                 <div class="chat-container glass-effect">
                     <!-- Chat Header -->
                     <div class="chat-header">
-                        <div class="mood-indicator glass-inner">
+                        <div class="mood-indicator glass-inner" id="currentMood">
                             <i class="fas fa-smile"></i>
                             <span id="moodLabel">Neutral</span>
                             <div class="mood-dot"></div>
                         </div>
                         <div class="ai-status">
                             <span class="status-dot"></span>
-                            <span>AI Learning Mode</span>
+                            <span>AI Model Active</span>
                         </div>
                     </div>
 
@@ -121,7 +119,7 @@
                             </div>
                             <div class="message-content">
                                 <div class="message-bubble glass-inner">
-                                    <p>Hello! 👋 I'm CoconuTAi, your intelligent mood-aware companion. I learn from our conversations to better understand and assist you. How can I help you today?</p>
+                                    <p>Welcome to CoconuTAi Enterprise Platform. I'm your AI assistant powered by advanced emotional intelligence and machine learning. How may I assist you today?</p>
                                 </div>
                                 <span class="message-time"></span>
                             </div>
@@ -134,7 +132,7 @@
                             <button class="emoji-btn" id="emojiBtn">
                                 <i class="far fa-smile"></i>
                             </button>
-                            <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+                            <input type="text" id="messageInput" placeholder="Enter your message..." autocomplete="off">
                             <button class="attach-btn" id="attachBtn">
                                 <i class="fas fa-paperclip"></i>
                             </button>
@@ -145,8 +143,8 @@
                         </div>
                         <div class="input-hints">
                             <span class="hint">
-                                <i class="fas fa-lightbulb"></i>
-                                Try: "What is 5+5?" or "Tell me about yourself"
+                                <i class="fas fa-info-circle"></i>
+                                Powered by advanced NLP and emotion AI
                             </span>
                         </div>
                     </div>
@@ -159,38 +157,38 @@
                             <div class="header-icon">
                                 <i class="fas fa-sparkles"></i>
                             </div>
-                            <h3>AI Capabilities</h3>
+                            <h3>Platform Features</h3>
                         </div>
                         <ul class="feature-list">
                             <li class="feature-item">
                                 <div class="feature-icon">
                                     <i class="fas fa-brain"></i>
                                 </div>
-                                <span>Mood-aware responses</span>
+                                <span>Emotion AI Analysis</span>
                             </li>
                             <li class="feature-item">
                                 <div class="feature-icon">
                                     <i class="fas fa-calculator"></i>
                                 </div>
-                                <span>Mathematical calculations</span>
+                                <span>Advanced Computing</span>
                             </li>
                             <li class="feature-item">
                                 <div class="feature-icon">
                                     <i class="fas fa-memory"></i>
                                 </div>
-                                <span>Contextual memory</span>
+                                <span>Context Retention</span>
                             </li>
                             <li class="feature-item">
                                 <div class="feature-icon">
                                     <i class="fas fa-user-check"></i>
                                 </div>
-                                <span>Personalized chat</span>
+                                <span>Adaptive Responses</span>
                             </li>
                             <li class="feature-item">
                                 <div class="feature-icon">
                                     <i class="fas fa-graduation-cap"></i>
                                 </div>
-                                <span>Continuous learning</span>
+                                <span>ML-Powered Learning</span>
                             </li>
                         </ul>
                     </div>
@@ -205,19 +203,81 @@
                         <div class="tips-content">
                             <div class="tip-item">
                                 <i class="fas fa-check-circle"></i>
-                                <p>Introduce yourself for personalized responses</p>
+                                <p>Initialize with your profile for optimal personalization</p>
                             </div>
                             <div class="tip-item">
                                 <i class="fas fa-check-circle"></i>
-                                <p>Share your feelings and experiences</p>
+                                <p>Provide contextual information for better analysis</p>
                             </div>
                             <div class="tip-item">
                                 <i class="fas fa-check-circle"></i>
-                                <p>Ask math questions for instant calculations</p>
+                                <p>Utilize computational capabilities for complex queries</p>
                             </div>
                             <div class="tip-item">
                                 <i class="fas fa-check-circle"></i>
-                                <p>More conversations = smarter AI!</p>
+                                <p>Continuous interaction enhances model accuracy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Controls Panel -->
+                    <div class="panel-card glass-effect">
+                        <div class="panel-header">
+                            <div class="header-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <h3>Ambient Audio</h3>
+                        </div>
+                        <div class="audio-controls">
+                            <!-- Ambient Sound Controls -->
+                            <div class="audio-section">
+                                <div class="audio-label">
+                                    <i class="fas fa-wind"></i>
+                                    <span>Ambient Sounds</span>
+                                </div>
+                                <div class="audio-actions">
+                                    <button class="audio-toggle" id="ambientToggle" title="Toggle ambient sounds">
+                                        <i class="fas fa-volume-mute" id="ambientIcon"></i>
+                                    </button>
+                                    <div class="volume-control">
+                                        <i class="fas fa-volume-down"></i>
+                                        <input type="range" id="ambientVolume" min="0" max="100" value="30" class="volume-slider">
+                                        <i class="fas fa-volume-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Music Player Controls -->
+                            <div class="audio-section">
+                                <div class="audio-label">
+                                    <i class="fas fa-music"></i>
+                                    <span>Music Player</span>
+                                </div>
+                                <div class="audio-actions">
+                                    <button class="audio-toggle" id="musicToggle" title="Play/Pause music">
+                                        <i class="fas fa-play" id="musicIcon"></i>
+                                    </button>
+                                    <div class="volume-control">
+                                        <i class="fas fa-volume-down"></i>
+                                        <input type="range" id="musicVolume" min="0" max="100" value="50" class="volume-slider">
+                                        <i class="fas fa-volume-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Now Playing Display -->
+                            <div class="now-playing" id="nowPlaying" style="display: none;">
+                                <div class="song-info">
+                                    <div class="song-details">
+                                        <div class="song-title">No song playing</div>
+                                        <div class="song-artist"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="audio-info">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Audio atmosphere dynamically adjusts to emotional state</p>
                             </div>
                         </div>
                     </div>
@@ -225,7 +285,6 @@
                     <button class="btn-reset" id="resetBtn">
                         <i class="fas fa-refresh"></i>
                         <span>New Session</span>
-                        <div class="btn-shine"></div>
                     </button>
                 </div>
             </div>
@@ -239,7 +298,7 @@
             <div class="modal-header">
                 <h2>
                     <i class="fas fa-chart-line"></i>
-                    Learning Analytics
+                    Analytics Dashboard
                 </h2>
                 <button class="modal-close" id="closeStatsBtn">
                     <i class="fas fa-times"></i>
@@ -249,40 +308,37 @@
                 <div class="stat-card glass-inner">
                     <div class="stat-icon">
                         <i class="fas fa-comments"></i>
-                        <div class="stat-icon-glow"></div>
                     </div>
                     <div class="stat-info">
                         <h3 id="totalConversations">0</h3>
-                        <p>Total Conversations</p>
+                        <p>Total Sessions</p>
                         <div class="stat-trend">
                             <i class="fas fa-arrow-up"></i>
-                            <span>+12%</span>
+                            <span>Active</span>
                         </div>
                     </div>
                 </div>
                 <div class="stat-card glass-inner">
                     <div class="stat-icon">
-                        <i class="fas fa-tags"></i>
-                        <div class="stat-icon-glow"></div>
+                        <i class="fas fa-database"></i>
                     </div>
                     <div class="stat-info">
                         <h3 id="topicsLearned">0</h3>
-                        <p>Topics Learned</p>
+                        <p>Data Points Learned</p>
                         <div class="stat-trend">
                             <i class="fas fa-arrow-up"></i>
-                            <span>+8%</span>
+                            <span>Growing</span>
                         </div>
                     </div>
                 </div>
                 <div class="stat-card glass-inner">
                     <div class="stat-icon">
-                        <i class="fas fa-user"></i>
-                        <div class="stat-icon-glow"></div>
+                        <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="stat-info">
                         <h3 id="userName">Guest</h3>
-                        <p>User Name</p>
-                        <div class="stat-badge">Active</div>
+                        <p>User Profile</p>
+                        <div class="stat-badge">Premium Access</div>
                     </div>
                 </div>
             </div>
@@ -293,9 +349,8 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner-container">
             <div class="spinner"></div>
-            <div class="spinner-glow"></div>
         </div>
-        <p>Processing your request...</p>
+        <p>Processing request...</p>
     </div>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
