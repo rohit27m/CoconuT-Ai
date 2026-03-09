@@ -1,181 +1,172 @@
-# CoconuT-Ai 🥥🤖
-**A Self-Learning AI Chatbot with Mood Detection & Dynamic Responses**
+<div align="center">
+  <img src="https://i.imgur.com/6fImgCg.png" alt="CoconuT-Ai Logo" width="150"/>
+  <h1>CoconuT-Ai 🥥🤖</h1>
+  <p><strong>Your Enterprise-Grade Emotion AI & Conversational Intelligence Platform</strong></p>
+  
+  <p>
+    <a href="#-key-features">Features</a> •
+    <a href="#-live-demonstration">Live Demo</a> •
+    <a href="#-technology-stack">Tech Stack</a> •
+    <a href="#-getting-started">Installation</a> •
+    <a href="#-usage">Usage</a> •
+    <a href="#-license">License</a>
+  </p>
 
-An intelligent AI chatbot that detects your mood through facial recognition and provides personalized, empathetic responses. The AI learns from every conversation, building a knowledge base to better understand and assist you over time.
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+  [![Framework](https://img.shields.io/badge/Framework-Flask-red.svg)](https://flask.palletsprojects.com/)
 
-## ✨ Key Features
+</div>
 
-### 🎭 Mood Detection
-- Real-time facial emotion recognition using DeepFace
-- Detects 7 emotions: happy, sad, angry, surprise, fear, disgust, neutral
-- Camera-based mood analysis before each session
-
-### 🧠 Self-Learning AI System
-- **Automatic Learning**: Learns patterns from every conversation
-- **Persistent Memory**: Saves knowledge between sessions
-- **Topic Recognition**: Identifies and remembers topics you discuss
-- **Personalization**: Remembers your name and preferences
-- **Word Associations**: Builds connections between words and moods
-- **Conversation History**: Tracks all interactions with timestamps
-
-### 💬 Dynamic Response Generation
-- Context-aware responses based on current mood
-- Personalized greetings using learned user information
-- Intelligent question handling
-- Sentiment analysis of user input
-- Natural conversation flow with varied responses
-
-### 📊 Learning Analytics
-- View conversation statistics
-- Track topics learned
-- Monitor AI's learning progress
-- See mood encounter patterns
-
-### 🎨 Enhanced User Interface
-- Modern, colorful design
-- Scrollable chat window
-- Color-coded messages (user vs AI)
-- Real-time text-to-speech responses
-- Enter key support for quick messaging
-- Stats viewer for learning progress
-
-## 🚀 How It Works
-
-1. **Mood Detection**: The AI uses your camera to analyze your facial expression
-2. **Personalized Greeting**: Based on detected mood, provides an appropriate welcome
-3. **Dynamic Conversation**: Responds intelligently to your inputs
-4. **Continuous Learning**: Every message helps the AI learn more about you
-5. **Knowledge Persistence**: All learned information is saved for future sessions
-
-## 📦 Installation
-
-1. **Clone the repository**:
-```bash
-git clone https://github.com/yourusername/CoconuT-Ai.git
-cd CoconuT-Ai
-```
-
-2. **Install dependencies**:
-```bash
-pip install -r requirements.txt
-```
-
-3. **Run the application**:
-```bash
-python CoconutAi.py
-```
-
-## 🔧 Requirements
-
-- Python 3.8+
-- Webcam for mood detection
-- Windows/Mac/Linux OS
-
-**Dependencies**:
-- opencv-python: For camera access and image processing
-- deepface: For facial emotion recognition
-- pyttsx3: For text-to-speech functionality
-- Pillow: For image handling
-- tensorflow: Backend for DeepFace
-
-## 📖 Usage Guide
-
-1. **Start the Application**: Run the Python script
-2. **Click "Start Mood Detection"**: Allow camera access
-3. **Let AI Detect Your Mood**: Position your face in view
-4. **Start Chatting**: Type messages and press Enter or click Send
-5. **View Stats**: Click "View Stats" to see learning progress
-6. **Exit**: Type "exit", "quit", or "bye" to end the session
-
-## 🤖 AI Learning Capabilities
-
-The AI learns and improves through:
-
-- **Pattern Recognition**: Identifies common conversation patterns
-- **Topic Extraction**: Recognizes subjects like work, family, health, hobbies
-- **Mood Correlation**: Associates words with emotional states
-- **User Profiling**: Builds a profile of your preferences
-- **Response Optimization**: Improves response quality over time
-
-### Data Storage
-
-The AI stores learned data in:
-- `ai_knowledge.pkl`: Main knowledge base (patterns, responses, topics)
-- `user_preferences.json`: Your personal information and preferences
-
-## 🎯 Features in Detail
-
-### Mood-Based Responses
-- **Happy**: Enthusiastic and energetic responses
-- **Sad**: Empathetic and supportive messages
-- **Angry**: Calm and understanding approach
-- **Neutral**: Balanced, helpful responses
-- **Fear**: Reassuring and comforting words
-- **Surprise**: Curious and engaged reactions
-- **Disgust**: Understanding and supportive dialogue
-
-### Dynamic Response Types
-- Greeting recognition
-- Question answering
-- Sentiment-aware replies
-- Context-based responses
-- Personalized messages with your name
-- Topic-referenced conversations
-
-## 🛠️ Customization
-
-You can customize the AI by:
-- Editing default mood responses in `get_default_mood_responses()`
-- Adding new topic keywords in `extract_topics()`
-- Modifying response generation logic in `generate_response()`
-- Adjusting learning frequency in `learn_from_input()`
-
-## 🔒 Privacy
-
-- All data is stored locally on your machine
-- No information is sent to external servers
-- Camera is only used for mood detection
-- You can delete `ai_knowledge.pkl` and `user_preferences.json` anytime to reset
-
-## 🐛 Troubleshooting
-
-**Camera not working?**
-- Ensure your webcam is connected
-- Check camera permissions in system settings
-- Close other applications using the camera
-
-**AI not learning?**
-- Check if pickle files are being created
-- Ensure write permissions in the directory
-- Verify enough disk space available
-
-**Dependencies issues?**
-- Use Python 3.8 or higher
-- Try: `pip install --upgrade pip`
-- Install dependencies one by one if batch install fails
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest new features
-- Submit pull requests
-- Improve documentation
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 👨‍💻 Author
-
-Created with ❤️ by [Your Name]
-
-## 🙏 Acknowledgments
-
-- DeepFace for emotion recognition
-- OpenCV for camera handling
-- The Python community
+**CoconuT-Ai** is a sophisticated, self-learning AI platform that provides deep emotional analysis and personalized, context-aware conversational experiences. Designed for a premium user experience, it leverages real-time facial emotion recognition to deliver unparalleled human-computer interaction.
 
 ---
 
-**Note**: This AI is designed to be a supportive companion. It learns from interactions to provide better assistance, but it's not a replacement for professional mental health support.
+## ✨ Key Features
+
+<details>
+<summary><strong>🔬 Emotion AI Analysis</strong></summary>
+<br>
+<ul>
+  <li><strong>Real-time Facial Recognition</strong>: Utilizes the DeepFace library to analyze facial expressions via webcam.</li>
+  <li><strong>Multi-Dimensional Emotion Detection</strong>: Accurately identifies 7 core emotional states: happy, sad, angry, surprise, fear, disgust, and neutral.</li>
+  <li><strong>Session Initiation</strong>: Begins each interaction with a precise emotional baseline analysis to tailor the conversation.</li>
+</ul>
+</details>
+
+<details>
+<summary><strong>🧠 Continuous Intelligence Engine</strong></summary>
+<br>
+<ul>
+  <li><strong>Conversational Learning</strong>: The AI learns and adapts from every interaction, continuously improving its understanding and response accuracy.</li>
+  <li><strong>In-Memory Knowledge Base</strong>: Maintains a dynamic, in-memory model of the conversation for immediate context recall.</li>
+  <li><strong>Local-First LLM</strong>: Powered by Ollama and Llama3 for secure, on-device conversational generation.</li>
+</ul>
+</details>
+
+<details>
+<summary><strong>💬 Context-Aware Dialogue System</strong></summary>
+<br>
+<ul>
+  <li><strong>Emotionally-Tuned Responses</strong>: Generates responses that are appropriate for the user's detected emotional state.</li>
+  <li><strong>Sophisticated "Thinking" Animation</strong>: A professional UI animation indicates when the AI is processing and formulating a response.</li>
+  <li><strong>Natural & Fluid Conversation</strong>: Manages conversational flow with context-aware replies and intelligent question handling.</li>
+</ul>
+</details>
+
+<details>
+<summary><strong>🎵 Audio Atmosphere</strong></summary>
+<br>
+<ul>
+  <li><strong>Mood-Based Ambient Sound</strong>: Plays ambient background sounds (e.g., rain, forest) that correspond to the user's detected mood.</li>
+  <li><strong>Integrated Music Player</strong>: Allows users to play curated songs during the session.</li>
+  <li><strong>Independent Volume Controls</strong>: Separate controls for ambient sounds and music for a fully customizable audio experience.</li>
+</ul>
+</details>
+
+<details>
+<summary><strong>💼 Premium Enterprise UI</strong></summary>
+<br>
+<ul>
+  <li><strong>Professional & Minimal Design</strong>: A clean, dark-themed interface built for a premium SaaS experience.</li>
+  <li><strong>Intuitive Controls</strong>: Easy-to-use interface for starting analysis, sending messages, and controlling audio.</li>
+  <li><strong>Analytics Dashboard</strong>: A modal providing insights into the AI's operational status and learned topics.</li>
+</ul>
+</details>
+
+---
+
+## 🎬 Live Demonstration
+
+### Emotion Analysis & AI Chat
+*This GIF demonstrates the initial emotion analysis, followed by a seamless transition to the conversational interface where the AI is actively responding.*
+
+![Emotion Analysis and Chat GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd292Z2N2bTdkZ2V2c3ZpY2E3bDR0cXZ2N2JtN3RzZ25zb3V5d2Y5eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiwE/giphy.gif)
+
+### Audio Atmosphere Controls
+*This GIF showcases the user interacting with the ambient sound and music player controls.*
+
+![Audio Controls GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd292Z2N2bTdkZ2V2c3ZpY2E3bDR0cXZ2N2JtN3RzZ25zb3V5d2Y5eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btPCcdNni10oP6g/giphy.gif)
+
+---
+
+## 🛠️ Technology Stack
+
+| Category      | Technology                                                                                             |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| **Backend**       | <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /> <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" /> |
+| **Frontend**      | <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> |
+| **AI / ML**       | <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" /> `DeepFace` `Ollama` `Llama3` |
+| **Database**      | `SQLite` (for persistent storage)                                                                      |
+| **Deployment**    | `Dockerfile` `Gunicorn`                                                                                |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.8+
+- A webcam for emotion analysis
+- Git
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/rohit27m/CoconuT-Ai.git
+   cd CoconuT-Ai
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```bash
+   # For Windows
+   python -m venv .venv
+   .\.venv\Scripts\activate
+
+   # For macOS/Linux
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+3. **Install the required dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## 📖 Usage
+
+1. **Run the Flask application:**
+   ```bash
+   python app.py
+   ```
+
+2. **Open your browser** and navigate to `http://127.0.0.1:5000`.
+
+3. **Click "Start Emotion Analysis"** and grant camera access when prompted.
+
+4. Once your emotion is detected, the chat interface will appear. **Start your conversation!**
+
+5. Use the **Audio Atmosphere** controls on the right to toggle ambient sounds and music.
+
+---
+
+## 🔒 Privacy
+
+Your privacy is paramount.
+- All data, including camera access and conversational logs, is processed and stored **locally on your machine**.
+- No information is ever sent to external servers.
+- The camera is used solely for the initial emotion detection and does not record.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/rohit27m/CoconuT-Ai/issues).
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<div align="center">
+  <p>Created with ❤️ by Rohit</p>
+</div>
