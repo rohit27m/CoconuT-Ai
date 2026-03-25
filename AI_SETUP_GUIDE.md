@@ -8,22 +8,22 @@ Your CocoNUT AI now runs locally through Ollama. No cloud API keys needed.
 
 2) **Pull a model** (PowerShell/CMD):
 ```
-ollama pull llama3:8b
+ollama pull qwen2.5:7b
 ```
-On 8 GB VRAM, `llama3:8b` with the default quant works. If you want faster/lighter, pull `phi3.5:mini`.
+On 8 GB VRAM, `qwen2.5:7b` with the default quant works. If you want faster/lighter, pull `phi3.5:mini`.
 
 3) **Set optional env vars** (only if you want to override defaults):
 ```
 # default host is http://localhost:11434
 set OLLAMA_HOST=http://localhost:11434
-set OLLAMA_MODEL=llama3:8b
+set OLLAMA_MODEL=qwen2.5:7b
 ```
 
 4) **Run the app**:
 ```
 python app.py
 ```
-You should see: ✅ `Ollama model ready: llama3:8b @ http://localhost:11434`
+You should see: ✅ `Ollama model ready: qwen2.5:7b @ http://localhost:11434`
 
 ---
 
@@ -38,7 +38,7 @@ You should see: ✅ `Ollama model ready: llama3:8b @ http://localhost:11434`
 
 ## Troubleshooting
 - **Ollama not reachable**: Make sure the Ollama app/service is running. On Windows, check the system tray or run `ollama list`.
-- **Model not found**: Run `ollama pull llama3:8b` (or your chosen model) and retry.
+- **Model not found**: Run `ollama pull qwen2.5:7b` (or your chosen model) and retry.
 - **Slow or OOM on 8 GB**: Try `ollama pull phi3.5:mini` or a `q4` quant of your chosen model.
 - **Change model**: Set `OLLAMA_MODEL` to any pulled model name, e.g. `OLLAMA_MODEL=phi3.5:mini`.
 

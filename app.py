@@ -88,14 +88,14 @@ class IntelligentAI:
         
         # Initialize Ollama client
         self.ollama_host = OLLAMA_HOST or os.getenv('OLLAMA_HOST', 'http://localhost:11434')
-        self.ollama_model = OLLAMA_MODEL or os.getenv('OLLAMA_MODEL', 'llama3:8b')
+        self.ollama_model = OLLAMA_MODEL or os.getenv('OLLAMA_MODEL', 'qwen2.5:7b')
         self.ollama_client = ollama.Client(host=self.ollama_host)
         self.ai_enabled = self._check_ollama_ready()
         if self.ai_enabled:
             print(f"✅ Ollama model ready: {self.ollama_model} @ {self.ollama_host}")
         else:
             print("⚠️  Ollama is not reachable or model missing. Using fallback mode.")
-            print("   Start Ollama (https://ollama.com/download) and pull a model, e.g. `ollama pull llama3:8b`")
+            print("   Start Ollama (https://ollama.com/download) and pull a model, e.g. `ollama pull qwen2.5:7b`")
         
         self.system_context = """You are CoconutAI, a highly intelligent and helpful AI assistant.
 
@@ -122,8 +122,13 @@ class IntelligentAI:
     def _check_ollama_ready(self):
         """Return True if the configured Ollama model is available."""
         try:
-            tags = self.ollama_client.list().get('models', [])
-            available = {m.get('name', '') for m in tags}
+            response = self.ollama_client.list()
+            # ollama >= 0.4 returns an object with .models list of ModelInfo objects
+            models_list = response.models if hasattr(response, 'models') else response.get('models', [])
+            available = set()
+            for m in models_list:
+                name = m.model if hasattr(m, 'model') else m.get('name', '')
+                available.add(name)
             if any(name.startswith(self.ollama_model) or self.ollama_model.startswith(name) for name in available):
                 return True
             logger.warning("Ollama reachable but model '%s' not found. Available: %s", self.ollama_model, list(available))
@@ -172,6 +177,9 @@ class IntelligentAI:
             prompt=prompt,
             stream=False
         )
+        # ollama >= 0.4 returns an object with .response attribute
+        if hasattr(response, 'response'):
+            return response.response.strip()
         return response.get('response', '').strip()
     
     def fallback_response(self, user_input, mood):
@@ -185,7 +193,7 @@ class IntelligentAI:
                 "I can help with coding! For full answers, make sure Ollama is running and the model is pulled.\n\n"
                 "To enable full coding assistance:\n"
                 "1. Install Ollama from https://ollama.com/download and start it.\n"
-                "2. Pull a model, e.g. `ollama pull llama3:8b`.\n"
+                "2. Pull a model, e.g. `ollama pull qwen2.5:7b`.\n"
                 "3. Set OLLAMA_MODEL if you prefer a different model.\n\n"
                 "For now, please describe your coding problem and I'll do my best to help with general guidance."
             )

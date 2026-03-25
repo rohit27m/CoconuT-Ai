@@ -4,7 +4,7 @@ entrypoint: gunicorn -b :$PORT app:app
 
 env_variables:
   OLLAMA_HOST: "http://localhost:11434"
-  OLLAMA_MODEL: "llama3:8b"
+  OLLAMA_MODEL: "qwen2.5:7b"
 
 automatic_scaling:
   target_cpu_utilization: 0.65
