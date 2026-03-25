@@ -35,4 +35,4 @@ RETRY_CONFIG = {
 # =========================
 # Ollama host/model configuration (local by default)
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
-OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'llama3:8b')
+OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen2.5:7b')

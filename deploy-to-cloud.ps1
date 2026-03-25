@@ -6,7 +6,7 @@ $PROJECT_ID = "coconut-ai-project"
 $SERVICE_NAME = "coconut-ai"
 $REGION = "us-central1"
 $OLLAMA_HOST = "http://localhost:11434"  # Replace with a reachable Ollama endpoint
-$OLLAMA_MODEL = "llama3:8b"
+$OLLAMA_MODEL = "qwen2.5:7b"
 
 Write-Host "🚀 Starting CocoNUT AI Deployment to Google Cloud Run" -ForegroundColor Cyan
 Write-Host "=" * 60
